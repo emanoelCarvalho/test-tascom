@@ -1,18 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Task } from './task.model';
+import { Task, TaskStatus } from './task.model';
 import { Tag } from '../tags/tag.model';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { AppLogger } from 'src/config/logger/logger.service';
 
 @Injectable()
 export class TasksService {
   constructor(
     @InjectModel(Task)
     private readonly taskModel: typeof Task,
+    private readonly logger: AppLogger,
   ) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.taskModel.create(createTaskDto);
+    const { tags, ...taskData } = createTaskDto;
+
+    const task = await this.taskModel.create(taskData);
+
+    if (tags && tags.length > 0) {
+      const tagInstances = await Promise.all(
+        tags.map(async (tag) => {
+          return await Tag.findOrCreate({
+            where: { name: tag.name },
+            defaults: tag,
+          });
+        }),
+      );
+
+      await task.$set(
+        'tags',
+        tagInstances.map(([tag]) => tag),
+      );
+    }
+
+    this.logger.trackTaskCreation();
+    return task;
   }
 
   async findAll(): Promise<Task[]> {
