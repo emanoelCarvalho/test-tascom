@@ -7,6 +7,7 @@ import {
   Body,
   Param,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.model';
@@ -45,7 +46,7 @@ export class TasksController {
 
   @UseGuards(JwtAuthGuard)
   @Get('/filterByTags')
-  filterTasksByTags(@Body('tags') tags: string[]): Promise<Task[]> {
+  async filterTasksByTags(@Query('tags') tags: string[]): Promise<Task[]> {
     return this.tasksService.findByTags(tags);
   }
 }

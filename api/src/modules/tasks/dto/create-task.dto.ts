@@ -1,7 +1,21 @@
-import { IsEnum, IsInt, IsNotEmpty, IsOptional, Max, Min, IsArray, ArrayNotEmpty, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  Max,
+  Min,
+  IsArray,
+  ArrayNotEmpty,
+  IsString,
+} from 'class-validator';
 
 import { Tag } from 'src/modules/tags/tag.model';
-import { TaskStatus } from '../util/task-satus.enum';
+
+export enum TaskStatus {
+  EM_ANDAMENTO = 'EM_ANDAMENTO',
+  FINALIZADO = 'FINALIZADO',
+}
 
 export class CreateTaskDto {
   @IsNotEmpty()
@@ -10,7 +24,8 @@ export class CreateTaskDto {
 
   @IsEnum(TaskStatus)
   @IsOptional()
-  status?: TaskStatus = TaskStatus.EM_ANDAMENTO; 
+  status: TaskStatus;
+
   @IsNotEmpty()
   @IsString()
   description: string;
@@ -25,5 +40,5 @@ export class CreateTaskDto {
 
   @IsArray()
   @ArrayNotEmpty()
-  tags: Tag[]; 
+  tags: Tag[];
 }

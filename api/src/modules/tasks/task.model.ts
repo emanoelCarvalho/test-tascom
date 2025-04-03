@@ -8,9 +8,12 @@ import {
 } from 'sequelize-typescript';
 import { Tag } from '../tags/tag.model';
 import { TaskTag } from './task-tag.model';
-import { TaskStatus } from './util/task-satus.enum';
 import { User } from '../users/user.model';
 
+export enum TaskStatus {
+  EM_ANDAMENTO = 'EM_ANDAMENTO',
+  FINALIZADO = 'FINALIZADO',
+}
 @Table
 export class Task extends Model<Task> {
   @Column({
