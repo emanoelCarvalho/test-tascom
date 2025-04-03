@@ -27,4 +27,15 @@ export class TasksService {
   async delete(id: number): Promise<void> {
     await this.taskModel.destroy({ where: { id } });
   }
+
+  async findByTags(tagNames: string[]): Promise<Task[]> {
+    return this.taskModel.findAll({
+      include: [
+        {
+          association: 'tags',
+          where: { name: tagNames },
+        },
+      ],
+    });
+  }
 }
