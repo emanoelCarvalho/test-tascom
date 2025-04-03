@@ -6,7 +6,7 @@ import { AuthSignInDto } from './dto/auth-signin.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
+  @Post("signIn")
   singIn(@Body() AuthSignInDto: AuthSignInDto) {
     return this.authService.signIn(AuthSignInDto.email, AuthSignInDto.password);
   }

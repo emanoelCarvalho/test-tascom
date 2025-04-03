@@ -3,6 +3,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { EnvModule } from 'src/config/env/env.module';
 import { EnvService } from 'src/config/env/env.service';
 import { Tag } from 'src/modules/tags/tag.model';
+import { TaskTag } from 'src/modules/tasks/task-tag.model';
 import { Task } from 'src/modules/tasks/task.model';
 import { User } from 'src/modules/users/user.model';
 
@@ -17,7 +18,7 @@ import { User } from 'src/modules/users/user.model';
         username: configService.getDbUsername,
         password: configService.getDbPassword,
         database: configService.getDbName,
-        models: [User, Task, Tag],
+        models: [User, Task, Tag, TaskTag],
         logging: false,
         autoLoadModels: true,
         synchronize: true,

@@ -17,7 +17,6 @@ import * as Joi from 'joi';
         JWT_SECRET: Joi.string().required(),
         BCRYPT_SALT: Joi.number().required().default(10),
         DATABASE_URL: Joi.string().required(),
-        REDIS_URL: Joi.string().required().default('redis://localhost:6379'),
       }),
     }),
   ],
