@@ -33,7 +33,7 @@ export class Task extends Model<Task> {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
-    validate: { min: 1 },
+    validate: { min: 1, max: 10 },
   })
   priority: number;
 
