@@ -1,0 +1,19 @@
+# Configurações do Banco de Dados
+DB_TYPE=postgres
+DB_HOST=localhost              # Usar localhost se a aplicação estiver rodando fora do Docker
+DB_PORT=5432                   # Porta padrão do PostgreSQL
+DB_USERNAME=postgres           # Nome do usuário do banco
+DB_PASSWORD=root          # Senha do banco
+DB_DATABASE=authdb             # Nome do banco de dados
+DB_SYNCHRONIZE=true            # Defina como 'false' em produção
+DB_LOGGING=true                # Log de queries (defina como 'false' em produção)
+
+# Configurações do JWT
+JWT_SECRET=secret=  # Substitua com um valor seguro
+JWT_EXPIRATION_TIME=3600s      # Tempo de expiração do token (1 hora)
+
+# Configuração da aplicação
+APP_PORT=3000                  # Porta da aplicação
+
+# Configurações do Bcrypt
+BCRYPT_SALT=10                 # Número de "salt rounds" do Bcrypt
