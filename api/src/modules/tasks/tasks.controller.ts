@@ -42,4 +42,10 @@ export class TasksController {
   deleteTask(@Param('id') id: number): Promise<void> {
     return this.tasksService.delete(id);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/filterByTags')
+  filterTasksByTags(@Body('tags') tags: string[]): Promise<Task[]> {
+    return this.tasksService.findByTags(tags);
+  }
 }

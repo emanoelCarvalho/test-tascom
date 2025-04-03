@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Task } from './task.model';
+import { Tag } from '../tags/tag.model';
 
 @Injectable()
 export class TasksService {
@@ -28,12 +29,17 @@ export class TasksService {
     await this.taskModel.destroy({ where: { id } });
   }
 
-  async findByTags(tagNames: string[]): Promise<Task[]> {
+  async findByTags(tags: string[]): Promise<Task[]> {
+    if (tags.length === 0) {
+      return this.taskModel.findAll();
+    }
+
     return this.taskModel.findAll({
       include: [
         {
-          association: 'tags',
-          where: { name: tagNames },
+          model: Tag,
+          where: { name: tags },
+          required: true, 
         },
       ],
     });
