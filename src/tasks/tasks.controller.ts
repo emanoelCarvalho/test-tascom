@@ -1,8 +1,16 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.model';
 
-@Controller('tasks')
+@Controller('api/v1/tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
@@ -17,7 +25,10 @@ export class TasksController {
   }
 
   @Put(':id')
-  updateTask(@Param('id') id: number, @Body() updateTaskDto: any): Promise<[number, Task[]]> {
+  updateTask(
+    @Param('id') id: number,
+    @Body() updateTaskDto: any,
+  ): Promise<[number, Task[]]> {
     return this.tasksService.update(id, updateTaskDto);
   }
 
