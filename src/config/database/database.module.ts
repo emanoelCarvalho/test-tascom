@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { EnvModule } from 'src/env/env.module';
-import { EnvService } from 'src/env/env.service';
+import { EnvModule } from 'src/config/env/env.module';
+import { EnvService } from 'src/config/env/env.service';
 
 @Module({
     imports: [
