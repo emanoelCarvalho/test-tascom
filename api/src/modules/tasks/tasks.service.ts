@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Task } from './task.model';
 import { Tag } from '../tags/tag.model';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 @Injectable()
 export class TasksService {
@@ -10,12 +11,23 @@ export class TasksService {
     private readonly taskModel: typeof Task,
   ) {}
 
-  async create(createTaskDto: any): Promise<Task> {
+  async create(createTaskDto: CreateTaskDto): Promise<Task> {
     return this.taskModel.create(createTaskDto);
   }
 
   async findAll(): Promise<Task[]> {
     return this.taskModel.findAll({ include: { all: true } });
+  }
+
+  async findOne(id: number): Promise<Task> {
+    const task = await this.taskModel.findByPk(id, {
+      include: { all: true },
+    });
+    if (!task) {
+      throw new Error('Task not found');
+    }
+
+    return task;
   }
 
   async update(id: number, updateTaskDto: any): Promise<[number, Task[]]> {
@@ -39,7 +51,7 @@ export class TasksService {
         {
           model: Tag,
           where: { name: tags },
-          required: true, 
+          required: true,
         },
       ],
     });

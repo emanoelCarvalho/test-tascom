@@ -1,153 +1,152 @@
 {
-    "_type": "export",
-    "__export_format": 4,
-    "__export_date": "2025-04-03T00:00:00.000Z",
-    "__export_source": "insomnia.desktop.app:v2023.1.0",
-    "resources": [
-      {
-        "_type": "workspace",
-        "_id": "wrk_todolist",
-        "name": "To-Do List API",
-        "parentId": null
-      },
-      {
-        "_type": "environment",
-        "_id": "env_todolist",
-        "parentId": "wrk_todolist",
-        "name": "Base Environment",
-        "data": {
-          "base_url": "http://localhost:3000/api/v1"
-        }
-      },
-      {
-        "_type": "request_group",
-        "_id": "reqgrp_users",
-        "parentId": "wrk_todolist",
-        "name": "Users"
-      },
-      {
-        "_type": "request",
-        "_id": "req_register",
-        "parentId": "reqgrp_users",
-        "name": "Register User",
-        "method": "POST",
-        "url": "{{ base_url }}/users",
-        "body": {
-          "mimeType": "application/json",
-          "text": "{ \"name\": \"John Doe\", \"email\": \"john@example.com\", \"password\": \"password123\" }"
-        },
-        "headers": [{ "name": "Content-Type", "value": "application/json" }]
-      },
-      {
-        "_type": "request_group",
-        "_id": "reqgrp_auth",
-        "parentId": "wrk_todolist",
-        "name": "Auth"
-      },
-      {
-        "_type": "request",
-        "_id": "req_login",
-        "parentId": "reqgrp_auth",
-        "name": "Login User",
-        "method": "POST",
-        "url": "{{ base_url }}/auth/signIn",
-        "body": {
-          "mimeType": "application/json",
-          "text": "{ \"email\": \"john@example.com\", \"password\": \"password123\" }"
-        },
-        "headers": [{ "name": "Content-Type", "value": "application/json" }]
-      },
-      {
-        "_type": "request_group",
-        "_id": "reqgrp_tasks",
-        "parentId": "wrk_todolist",
-        "name": "Tasks"
-      },
-      {
-        "_type": "request",
-        "_id": "req_create_task",
-        "parentId": "reqgrp_tasks",
-        "name": "Create Task",
-        "method": "POST",
-        "url": "{{ base_url }}/tasks",
-        "body": {
-          "mimeType": "application/json",
-          "text": "{ \"title\": \"New Task\", \"description\": \"Task description\", \"status\": \"Em andamento\", \"priority\": 1 }"
-        },
-        "headers": [{ "name": "Content-Type", "value": "application/json" }]
-      },
-      {
-        "_type": "request",
-        "_id": "req_get_tasks",
-        "parentId": "reqgrp_tasks",
-        "name": "Get All Tasks",
-        "method": "GET",
-        "url": "{{ base_url }}/tasks"
-      },
-      {
-        "_type": "request",
-        "_id": "req_get_task",
-        "parentId": "reqgrp_tasks",
-        "name": "Get Task by ID",
-        "method": "GET",
-        "url": "{{ base_url }}/tasks/1"
-      },
-      {
-        "_type": "request",
-        "_id": "req_update_task",
-        "parentId": "reqgrp_tasks",
-        "name": "Update Task",
-        "method": "PUT",
-        "url": "{{ base_url }}/tasks/1",
-        "body": {
-          "mimeType": "application/json",
-          "text": "{ \"title\": \"Updated Task\", \"description\": \"Updated description\", \"status\": \"Finalizado\", \"priority\": 2 }"
-        },
-        "headers": [{ "name": "Content-Type", "value": "application/json" }]
-      },
-      {
-        "_type": "request",
-        "_id": "req_delete_task",
-        "parentId": "reqgrp_tasks",
-        "name": "Delete Task",
-        "method": "DELETE",
-        "url": "{{ base_url }}/tasks/1"
-      },
-      {
-        "_type": "request_group",
-        "_id": "reqgrp_tags",
-        "parentId": "wrk_todolist",
-        "name": "Tags"
-      },
-      {
-        "_type": "request",
-        "_id": "req_create_tag",
-        "parentId": "reqgrp_tags",
-        "name": "Create Tag",
-        "method": "POST",
-        "url": "{{ base_url }}/tags",
-        "body": {
-          "mimeType": "application/json",
-          "text": "{ \"name\": \"Study\", \"color\": \"#FF5733\" }"
-        },
-        "headers": [{ "name": "Content-Type", "value": "application/json" }]
-      },
-      {
-        "_type": "request",
-        "_id": "req_get_tags",
-        "parentId": "reqgrp_tags",
-        "name": "Get All Tags",
-        "method": "GET",
-        "url": "{{ base_url }}/tags"
-      },
-      {
-        "_type": "request",
-        "_id": "req_filter_tasks_by_tags",
-        "parentId": "reqgrp_tasks",
-        "name": "Filter Tasks by Tags",
-        "method": "GET",
-        "url": "{{ base_url }}/tasks/filter-by-tags?tags=Study,Work"
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-04-03T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.1.0",
+  "resources": [
+    {
+      "_type": "workspace",
+      "_id": "wrk_escolar_todolist",
+      "name": "To-Do List Escolar",
+      "parentId": null
+    },
+    {
+      "_type": "environment",
+      "_id": "env_escolar",
+      "parentId": "wrk_escolar_todolist",
+      "name": "Ambiente Base",
+      "data": {
+        "base_url": "http://localhost:3000/api/v1"
       }
-    ]
-  }
-  
+    },
+    {
+      "_type": "request_group",
+      "_id": "reqgrp_usuarios",
+      "parentId": "wrk_escolar_todolist",
+      "name": "Usuários"
+    },
+    {
+      "_type": "request",
+      "_id": "req_registro_usuario",
+      "parentId": "reqgrp_usuarios",
+      "name": "Registrar Aluno",
+      "method": "POST",
+      "url": "{{ base_url }}/users",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{ \"name\": \"Aluno Exemplo\", \"email\": \"aluno@escola.com\", \"password\": \"senha123\" }"
+      },
+      "headers": [{ "name": "Content-Type", "value": "application/json" }]
+    },
+    {
+      "_type": "request_group",
+      "_id": "reqgrp_auth",
+      "parentId": "wrk_escolar_todolist",
+      "name": "Autenticação"
+    },
+    {
+      "_type": "request",
+      "_id": "req_login",
+      "parentId": "reqgrp_auth",
+      "name": "Login do Aluno",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{ \"email\": \"aluno@escola.com\", \"password\": \"senha123\" }"
+      },
+      "headers": [{ "name": "Content-Type", "value": "application/json" }]
+    },
+    {
+      "_type": "request_group",
+      "_id": "reqgrp_tarefas",
+      "parentId": "wrk_escolar_todolist",
+      "name": "Tarefas Escolares"
+    },
+    {
+      "_type": "request",
+      "_id": "req_criar_tarefa",
+      "parentId": "reqgrp_tarefas",
+      "name": "Criar Tarefa",
+      "method": "POST",
+      "url": "{{ base_url }}/tasks",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{ \"title\": \"Estudar Matemática\", \"description\": \"Resolver exercícios da página 42\", \"status\": \"EM_ANDAMENTO\", \"priority\": 2, \"userId\": 1, \"tags\": [{ \"id\": 1, \"name\": \"Matemática\", \"color\": \"#1E90FF\" }] }"
+      },
+      "headers": [{ "name": "Content-Type", "value": "application/json" }]
+    },
+    {
+      "_type": "request",
+      "_id": "req_obter_tarefas",
+      "parentId": "reqgrp_tarefas",
+      "name": "Listar Todas as Tarefas",
+      "method": "GET",
+      "url": "{{ base_url }}/tasks"
+    },
+    {
+      "_type": "request",
+      "_id": "req_obter_tarefa",
+      "parentId": "reqgrp_tarefas",
+      "name": "Buscar Tarefa por ID",
+      "method": "GET",
+      "url": "{{ base_url }}/tasks/1"
+    },
+    {
+      "_type": "request",
+      "_id": "req_atualizar_tarefa",
+      "parentId": "reqgrp_tarefas",
+      "name": "Atualizar Tarefa",
+      "method": "PUT",
+      "url": "{{ base_url }}/tasks/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{ \"title\": \"Estudar Matemática\", \"description\": \"Página 42 e 43\", \"status\": \"FINALIZADO\", \"priority\": 3, \"tags\": [{ \"id\": 1, \"name\": \"Matemática\", \"color\": \"#1E90FF\" }] }"
+      },
+      "headers": [{ "name": "Content-Type", "value": "application/json" }]
+    },
+    {
+      "_type": "request",
+      "_id": "req_deletar_tarefa",
+      "parentId": "reqgrp_tarefas",
+      "name": "Excluir Tarefa",
+      "method": "DELETE",
+      "url": "{{ base_url }}/tasks/1"
+    },
+    {
+      "_type": "request_group",
+      "_id": "reqgrp_tags",
+      "parentId": "wrk_escolar_todolist",
+      "name": "Categorias de Estudo"
+    },
+    {
+      "_type": "request",
+      "_id": "req_criar_tag",
+      "parentId": "reqgrp_tags",
+      "name": "Criar Categoria de Estudo",
+      "method": "POST",
+      "url": "{{ base_url }}/tags",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{ \"name\": \"Matemática\", \"color\": \"#1E90FF\" }"
+      },
+      "headers": [{ "name": "Content-Type", "value": "application/json" }]
+    },
+    {
+      "_type": "request",
+      "_id": "req_obter_tags",
+      "parentId": "reqgrp_tags",
+      "name": "Listar Categorias de Estudo",
+      "method": "GET",
+      "url": "{{ base_url }}/tags"
+    },
+    {
+      "_type": "request",
+      "_id": "req_filtrar_tarefas_por_tags",
+      "parentId": "reqgrp_tarefas",
+      "name": "Filtrar Tarefas por Categorias",
+      "method": "GET",
+      "url": "{{ base_url }}/tasks/filter-by-tags?tags=Matemática,Física"
+    }
+  ]
+}

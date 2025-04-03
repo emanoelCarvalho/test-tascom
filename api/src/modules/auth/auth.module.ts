@@ -17,7 +17,7 @@ import { EnvService } from 'src/config/env/env.service';
       imports: [EnvModule],
       useFactory: async (configService: EnvService) => ({
         secret: configService.getJwtSecret,
-        signOptions: { expiresIn: '60s' },
+        signOptions: { expiresIn: '2d' },
       }),
       inject: [EnvService],
     }),
